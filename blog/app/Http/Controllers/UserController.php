@@ -83,6 +83,6 @@ class UserController extends Controller
 
     public function getLogout() {
         Auth::logout();
-        return redirect()->route('user.signin');
+        return redirect()->route('product.index');
     }
 }

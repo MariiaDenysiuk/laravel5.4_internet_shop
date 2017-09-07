@@ -17,9 +17,17 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('imagePath');
+            $table->string('imagePath1');
+            $table->string('imagePath2');
             $table->string('title');
             $table->text('description');
             $table->integer('price');
+            $table->string('weight');
+            $table->string('dimensions');
+            $table->string('materials');
+            $table->string('manufacturer');
+            $table->string('otherInfo');
+            $table->integer('category_id');
         });
     }
 

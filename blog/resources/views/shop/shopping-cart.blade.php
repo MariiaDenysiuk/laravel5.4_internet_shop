@@ -16,7 +16,7 @@
                                 <button type="button" class="btn btn-primary btn-xs
                                 dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
                                 <ul class="dropdown-menu">
-                                    <li><a href="{{ route('product.reduceByOne', ['id'=>$product['item']['id']]) }}">Reduce by 1</a></li>
+                                    <li><a href="{{ route('product.reduceByone', ['id'=>$product['item']['id']]) }}">Reduce by 1</a></li>
                                     <li><a href="{{ route('product.remove', ['id'=>$product['item']['id']]) }}">Reduce All</a></li>
                                 </ul>
                             </div>

@@ -16,11 +16,19 @@ Route::get('/', [
     'as'=> 'product.index'
 ]);
 
-Route::get('/add-to-cart/{id}', [
+Route::get('shop/single-page/single-page/{id}/{category}',
+    'ProductController@getSinglePage');
+
+
+Route::get('/add-to-cart/{id}/{quantity}', [
     'uses' => 'ProductController@getAddToCart',
     'as' => 'product.addToCart'
 ]);
 
+Route::get('/add/{id}', [
+    'uses' => 'ProductController@getAddByOne',
+    'as' => 'product.addByOne'
+]);
 
 Route::get('/reduce/{id}', [
     'uses' => 'ProductController@getReduceByOne',
@@ -50,27 +58,75 @@ Route::post('/checkout', [
 ]);
 
 
+
+Route::get('/get-product-category/{category}', [
+    'uses' => 'ProductCategoryController@getProductCategory',
+    'as'=> 'product.category'
+]);
+
+Route::get('/get-product-category-atr/{category}/{atr?}', [
+    'uses' => 'ProductCategoryController@getProductCategoryAtr',
+    'as'=> 'product.category.atr'
+]);
+
+Route::get('/get-product-price/{category}/{atr}/{price1}/{price2}', [
+    'uses' => 'ProductCategoryController@getProductPrice',
+    'as'=> 'product.category.price'
+]);
+
+
+//Blog
+Route::get('/blog', [
+    'uses' => 'FrontController@getBlog',
+    'as'=> 'blog.blog'
+]);
+Route::get('/blog/{id}', [
+    'uses' => 'FrontController@getBlogSingle',
+    'as'=> 'blog.single'
+]);
+
+Route::get('/gallery', [
+    'uses' => 'FrontController@getGallery',
+    'as'=> 'gallery.gallery'
+]);
+
+Route::get('/about', [
+    'uses' => 'FrontController@getAbout',
+    'as'=> 'about.about'
+]);
+
+Route::get('/contacts', [
+    'uses' => 'FrontController@getContacts',
+    'as'=> 'contacts.contacts'
+]);
+
+Route::get('/faq', [
+    'uses' => 'FrontController@getFaq',
+    'as'=> 'faq.faq'
+]);
+
+
 Route::group(['prefix'=>'user'], function(){
 
     Route::group(['middleware'=>'guest'], function(){
         Route::get('/signup', [
             'uses' => 'UserController@getSignup',
-            'as'=> 'user.signup'
+            'as'=> 'partials.signup'
         ]);
 
         Route::get('/signin', [
             'uses' => 'UserController@getSignin',
-            'as'=> 'user.signin'
+            'as'=> 'partials.signin'
         ]);
 
         Route::post('/signup', [
             'uses' => 'UserController@postSignup',
-            'as'=> 'user.signup'
+            'as'=> 'partials.signup'
         ]);
 
         Route::post('/signin', [
             'uses' => 'UserController@postSignin',
-            'as'=> 'user.signin'
+            'as'=> 'partials.signin'
         ]);
 
     });
@@ -88,9 +144,6 @@ Route::group(['prefix'=>'user'], function(){
         ]);
 
     });
-
-
-
 });
 
 
